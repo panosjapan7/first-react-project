@@ -2,6 +2,30 @@ import React, {createContext, useContext, useEffect, useState} from 'react'
 import { NameContext } from '../App'
 import CustomerList from '../components/CustomerList'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
+
+const HomePageDiv = styled.div`
+    margin-top: 20px;
+`
+
+const Header5 = styled.h5`
+    font-size: 22px;
+    font-family: Courier;
+` 
+
+const HomePageParagraph = styled(Header5)`
+    font-size: 15px;
+`
+
+const HomePageLink = styled(Header5)`
+    font-size: 18px;
+`
+    const linkStyle = {
+        color: "red",
+        textDecoration: "none",
+    };
+
 
 export default function HomePage() {
 
@@ -30,11 +54,11 @@ export default function HomePage() {
 
                 <div className="col-md-3">
                     {myData && (
-                    <div>
-                        <h5>Hello, {myData. firstName} {myData.lastName}</h5>
-                        <p>Your email address is {myData.email} </p>
-                        <p><Link to="/login">Login Page</Link></p>
-                    </div>
+                    <HomePageDiv>
+                        <Header5>Hello, {myData. firstName} {myData.lastName}</Header5>
+                        <HomePageParagraph>Your email address is {myData.email} </HomePageParagraph>
+                        <HomePageLink><Link to="/login" style={linkStyle}>Login Page</Link></HomePageLink>
+                    </HomePageDiv>
                     )}
 
                     <div>
