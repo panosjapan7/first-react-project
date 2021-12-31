@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import styled from "styled-components"
 
 export default function CustomerCreate(props) {
 
@@ -11,12 +12,66 @@ export default function CustomerCreate(props) {
     const [email, setEmail] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
 
+    //Inputs lose focus after typing just one character in the input field if I make the container div -> CustomerCreateContainer
+    const CustomerCreateContainer = styled.div`
+        margin-left: 50px;
+        margin-top: 20px;
+    `
+    const CustomerCreateContainerNew = {
+        marginTop: "20px",
+        marginLeft: "50px",
+    }
+
+    const Header2 = styled.h2`
+        font-family: Courier;
+    `
+    
+    //Input loses focus after typing just one character in the input field, so I used constFormInputNew to style the inputs
+    // const FormInput = styled.input`
+    //     font-family: Courier;
+    //     margin-top: 10px;
+    //     border-radius: 10px;
+    //     border: 1px solid red;
+    //     padding: 5px;
+    //     width: 300px;
+    // `
+    const constFormInputNew = {
+        fontFamily: "Courier",
+        marginTop: "10px",
+        borderRadius: "10px",
+        border: "1px solid red",
+        padding: "5px",
+        width: "300px",
+    }
+
+    const vatNrInput = {
+        marginTop: "10px",
+        borderRadius: "10px",
+        border: "1px solid red",
+        padding: "5px",
+        width: "300px",
+    }
+
+    const SubmitButton = styled.button`
+        font-family: Courier;
+        margin-top: 20px;
+        border-radius: 10px;
+        border: 1px solid red;
+        padding: 10px;
+        background: none;
+        &:hover{
+            color: green;
+            border: 1px solid green;
+        }
+    `
+
     function renderInput(type, placeholder, value, setValue){
         return <input 
             type={type}
             placeholder={placeholder}
             value={value}
             onChange={e => setValue(e.target.value)}
+            style={constFormInputNew}
         />
     }
 
@@ -40,8 +95,8 @@ export default function CustomerCreate(props) {
     }
 
     return (
-        <div>
-            <h2>Create a Customer</h2>
+        <div style={CustomerCreateContainerNew}>
+            <Header2>Create a Customer</Header2>
             <form onSubmit={handleOnSubmit} >
                 {renderInput("text", "Name", name, setName)}
                 <br />
@@ -54,6 +109,7 @@ export default function CustomerCreate(props) {
                     value={vatNr}
                     onChange={e => setVatNr(e.target.value)}
                     pattern="SE[0-9]{10}"
+                    style={vatNrInput}
                 />
                 <br />
                 {renderInput("text", "Reference", reference, setReference)}
@@ -66,7 +122,7 @@ export default function CustomerCreate(props) {
                 <br />
                 {renderInput("text", "Phone Number", phoneNumber, setPhoneNumber)}
                 <br />
-                <button type="submit">Create Customer</button>
+                <SubmitButton type="submit">Create Customer</SubmitButton>
             </form>
         </div>
     )

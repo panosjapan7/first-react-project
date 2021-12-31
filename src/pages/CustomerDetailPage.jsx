@@ -1,6 +1,37 @@
 import React, {useContext, useEffect} from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { NameContext } from '../App'
+import styled from 'styled-components';
+
+const LinkParagraphContainer = styled.p`
+    margin-top: 20px;
+`
+    const linkStyle = {
+        color: "red",
+        textDecoration: "none",
+    };
+
+const CustomerHeader = styled.p`
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-family: Courier;
+    font-weight: 600;
+    font-size: 15pt;
+`
+
+const CustomerDataContainer = styled.div`
+    margin-top: 20px;
+    
+`
+
+const CustomerData = styled(CustomerHeader)`
+    font-weight: 500;
+    font-size: 13pt;
+    margin-bottom: 10px;
+`
+    const customerDataSpan = {
+        fontWeight: 600,
+    }
 
 export default function CustomerDetailPage() {
     const params = useParams()
@@ -17,26 +48,25 @@ export default function CustomerDetailPage() {
             <div className="row">
 
                 <div className="col-md-3">
-                    Left Menu
-                    <p><Link to="/home">Home Page</Link></p>
-                    <p><Link to="/login">Login Page</Link></p>
+                    <LinkParagraphContainer><Link to="/home" style={linkStyle}>Home Page</Link></LinkParagraphContainer>
+                    <LinkParagraphContainer><Link to="/login" style={linkStyle}>Login Page</Link></LinkParagraphContainer>
                     
                 </div>
                 
                 <div className="col-md-9">
-                    <p>You are viewing the customer with id: {id}</p>
+                    <CustomerHeader>You are viewing the customer with id: {id}</CustomerHeader>
                     
                     {customerList && (
-                        <div>
-                            <p>Customer Name: {customerList[id].name}</p>
-                            <p>Organisation Nr: {customerList[id].organisationNr}</p>
-                            <p>VAT Nr: {customerList[id].vatNr}</p>
-                            <p>Reference: {customerList[id].reference}</p>
-                            <p>Payment terms: NET{customerList[id].paymentTerm} days</p>
-                            <p>Website: {customerList[id].website}</p>
-                            <p>Email: {customerList[id].email}</p>
-                            <p>Phone Number: {customerList[id].phoneNumber}</p>
-                        </div>
+                        <CustomerDataContainer>
+                            <CustomerData><span style={customerDataSpan}>Customer Name:</span> {customerList[id].name}</CustomerData>
+                            <CustomerData><span style={customerDataSpan}>Organisation Nr:</span> {customerList[id].organisationNr}</CustomerData>
+                            <CustomerData><span style={customerDataSpan}>VAT Nr:</span> {customerList[id].vatNr}</CustomerData>
+                            <CustomerData><span style={customerDataSpan}>Reference:</span> {customerList[id].reference}</CustomerData>
+                            <CustomerData><span style={customerDataSpan}>Payment terms:</span> NET {customerList[id].paymentTerm} days</CustomerData>
+                            <CustomerData><span style={customerDataSpan}>Website:</span> {customerList[id].website}</CustomerData>
+                            <CustomerData><span style={customerDataSpan}>Email:</span> {customerList[id].email}</CustomerData>
+                            <CustomerData><span style={customerDataSpan}>Phone Number:</span> {customerList[id].phoneNumber}</CustomerData>
+                        </CustomerDataContainer>
                     )}
                 </div>
 
