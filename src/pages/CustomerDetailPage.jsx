@@ -36,11 +36,14 @@ const CustomerData = styled(CustomerHeader)`
 export default function CustomerDetailPage() {
     const params = useParams()
     const id = params.id
+    
 
     const {customerList, setCustomerList} = useContext(NameContext)
     const [myData, setMyData] = useState(null)
 
     const [name, setName] = useState("")
+    const [userId, setUserId] = useState("")
+    const [organisationNr, setOrganisationNr] = useState("")
 
 
     useEffect(() => {
@@ -54,10 +57,15 @@ export default function CustomerDetailPage() {
         .then(res => res.json())
         .then(data => {
             
-            console.log(data)
+            // console.log(data)
             console.log(data.results[id])
+            // console.log(data.results[id].id)
             setMyData(data.results)
             setName(data.results[id].name)
+            setUserId(data.results[id].id)
+            console.log(`User ID: ${userId}`)
+            setOrganisationNr(data.results[id].organisationNr)
+            
         })
     }, [])
 
@@ -66,7 +74,7 @@ export default function CustomerDetailPage() {
         e.preventDefault()
         const url=`https://frebi.willandskill.eu/api/v1/customers/${id}`
         const token = localStorage.getItem("webb21")
-
+        const customderId = 6353
         // const body = new FormData
         // body.append("name", "\"Oskar\"")
 
@@ -79,7 +87,8 @@ export default function CustomerDetailPage() {
         // method: "PATCH"
         // })
         
-        const payload = {name, id}
+        const payload = {userId, name, organisationNr}
+        // const myUserId = 916
         fetch(url, {
             method: "PATCH",
             headers: {
