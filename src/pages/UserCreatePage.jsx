@@ -51,7 +51,6 @@ export default function UserCreatePage(props) {
     function handleOnSubmit(e){
         e.preventDefault()
         console.log(firstName, lastName, email, organisationKind, password)
-
         const url="https://frebi.willandskill.eu/auth/users/"
         const payload = {email, organisationKind, password, firstName, lastName}
         const token = localStorage.getItem("webb21")

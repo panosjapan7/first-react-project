@@ -1,7 +1,22 @@
-import React, {useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+
+const MyComponent = props => {
+
+    const location = useLocation()
+    console.log(location)
+    // return <p>{location.pathname}</p>
+    useEffect(() => {
+        console.log(location)
+    },[location])
+}
+
 
 export default function LoginPage() {
+
+    // useEffect(() => {
+    //     console.log(location.pathname)
+    // }, [])
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -26,12 +41,11 @@ export default function LoginPage() {
             localStorage.setItem("webb21", token)
             navigate("/home")
         })
-        
-
     }
 
 
     return (
+
         <div>
             <h1>Login Page</h1>
             <form onSubmit={handleOnSubmit}>
@@ -51,4 +65,8 @@ export default function LoginPage() {
             </form>
         </div>
     )
+
+
 }
+
+
