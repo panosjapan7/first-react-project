@@ -105,6 +105,7 @@ export default function CustomerDetailPage() {
                 <div className="col-md-2">
                     <LinkParagraphContainer><Link to="/home" style={linkStyle}>Home Page</Link></LinkParagraphContainer>
                     <LinkParagraphContainer><Link to="/login" style={linkStyle}>Login Page</Link></LinkParagraphContainer>
+                    <LinkParagraphContainer><Link to="/users/create" style={linkStyle}>Create a User</Link></LinkParagraphContainer>
                     
                 </div>
                 

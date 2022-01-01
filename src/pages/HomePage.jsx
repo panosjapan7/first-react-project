@@ -58,6 +58,7 @@ export default function HomePage() {
                         <Header5>Hello, {myData. firstName} {myData.lastName}</Header5>
                         <HomePageParagraph>Your email address is {myData.email} </HomePageParagraph>
                         <HomePageLink><Link to="/login" style={linkStyle}>Login Page</Link></HomePageLink>
+                        <HomePageLink><Link to="/users/create" style={linkStyle}>Create a User</Link></HomePageLink>
                     </HomePageDiv>
                     )}
 
