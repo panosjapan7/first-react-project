@@ -7,6 +7,12 @@ import styled from 'styled-components'
 
 export default function CustomerList() {
 
+    const CustomerListHeader = styled.h4`
+        margin-top: 20px;    
+        font-family: Courier;
+    
+    `
+
     const CustomerContainerDiv = styled.div`
         margin-top: 20px;        
     `
@@ -44,16 +50,13 @@ export default function CustomerList() {
         const token = localStorage.getItem("webb21")
         fetch(url, {
             headers: {
+                'Content-Type': 'application/json',
                 "Authorization": `Bearer ${token}`
             }
         })
         .then(res => res.json())
         .then(data => setCustomerList(data.results))
     }
-
-    // function clgList(e){
-    //     console.log(customerList)
-    // }
 
     function handleOnDelete(id){
         console.log(id)
@@ -79,8 +82,7 @@ export default function CustomerList() {
                 </div>
                 
                 <div className="col-md-4">
-                    {/* <button onClick={fetchData}>Refresh</button> */}
-            
+                    <CustomerListHeader>Customer List</CustomerListHeader>
                     {customerList && customerList.map((item, index) => {
                         return <CustomerContainerDiv key={item.id}> 
                             <p key={index}>
