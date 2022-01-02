@@ -1,23 +1,35 @@
 import React, {useState, useEffect} from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
-const MyComponent = props => {
-
-    const location = useLocation()
-    console.log(location)
-    // return <p>{location.pathname}</p>
-    useEffect(() => {
-        console.log(location)
-    },[location])
-}
+function FindUrl() {
+    const location = useLocation();
+    const url = location.search
+    // console.log(location.search);
+    console.log(url)
+    const queryParams = new URLSearchParams(url)
+    const uid = queryParams.get("uid")
+    console.log(uid)
+    const urlToken = queryParams.get("token")
+    console.log(urlToken)
+    
+  }
 
 
 export default function LoginPage() {
 
-    // useEffect(() => {
-    //     console.log(location.pathname)
-    // }, [])
+    // function findLocation(){
+    //     let location = useLocation()
+    
+    //     useEffect(() => {
+    
+    //         console.log(location)
+    //     },[])
+    // }
 
+
+    FindUrl()
+    
+    
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
