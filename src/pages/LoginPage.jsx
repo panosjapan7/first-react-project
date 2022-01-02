@@ -7,28 +7,32 @@ function FindUrl() {
     // console.log(location.search);
     console.log(url)
     const queryParams = new URLSearchParams(url)
+
     const uid = queryParams.get("uid")
     console.log(uid)
-    const urlToken = queryParams.get("token")
-    console.log(urlToken)
     
-  }
+    const token = queryParams.get("token")
+    console.log(token)
+
+    const urlActivate = "https://frebi.willandskill.eu/auth/users/activate/"
+    const payload = {uid, token}
+
+    fetch(urlActivate, {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${payload}`
+        },
+        // body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+}
 
 
 export default function LoginPage() {
 
-    // function findLocation(){
-    //     let location = useLocation()
-    
-    //     useEffect(() => {
-    
-    //         console.log(location)
-    //     },[])
-    // }
-
-
     FindUrl()
-    
     
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
