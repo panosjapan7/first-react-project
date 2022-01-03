@@ -20,7 +20,7 @@ export default function MyPage() {
         })
         .then(res => res.json())
         .then(data => {
-            setMyData(data)
+            setMyData(data.results)
             setFirstName(data.firstName)
             setLastName(data.lastName)
         })

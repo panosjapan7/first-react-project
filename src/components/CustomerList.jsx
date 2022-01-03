@@ -10,7 +10,6 @@ export default function CustomerList() {
     const CustomerListHeader = styled.h4`
         margin-top: 20px;    
         font-family: Courier;
-    
     `
 
     const CustomerContainerDiv = styled.div`
@@ -72,16 +71,17 @@ export default function CustomerList() {
         .then(res => fetchData())
     }
 
+
     return (
         <div className="container">
             
             <div className="row">
 
-                <div className="col-md-8">
+                <div className="col-md-7">
                     <CustomerCreate onSuccess={fetchData} />
                 </div>
                 
-                <div className="col-md-4">
+                <div className="col-md-5">
                     <CustomerListHeader>Customer List</CustomerListHeader>
                     {customerList && customerList.map((item, index) => {
                         return <CustomerContainerDiv key={item.id}> 
@@ -92,6 +92,11 @@ export default function CustomerList() {
                         </CustomerContainerDiv>
                     })}
                 </div>
+
+                {/* <div className="col-md-3">
+                    <EditCustomer onSuccess={fetchData} />
+                    <button onClick={fetchData}>Refresh</button>
+                </div> */}
 
             </div>
             

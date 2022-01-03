@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { NameContext } from '../App'
 import styled from 'styled-components';
+import EditCustomerDetails from '../components/EditCustomerDetails';
 
 const LinkParagraphContainer = styled.p`
     margin-top: 20px;
@@ -37,16 +38,30 @@ export default function CustomerDetailPage() {
     const params = useParams()
     const id = params.id
     
-
     const {customerList, setCustomerList} = useContext(NameContext)
     const [myData, setMyData] = useState(null)
 
-    const [name, setName] = useState("")
-    const [userId, setUserId] = useState("")
-    const [organisationNr, setOrganisationNr] = useState("")
-
 
     useEffect(() => {
+        fetchData()
+        // const url="https://frebi.willandskill.eu/api/v1/customers/"
+        // const token = localStorage.getItem("webb21")
+        // fetch(url, {
+        //     headers: {
+        //         "Authorization": `Bearer ${token}`
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(data => {
+            
+        //     // console.log(data)
+        //     // console.log(data.results[id])
+        //     // console.log(data.results[id].id)
+        //     setMyData(data.results)
+        // })
+    }, [])
+
+    function fetchData(){
         const url="https://frebi.willandskill.eu/api/v1/customers/"
         const token = localStorage.getItem("webb21")
         fetch(url, {
@@ -58,54 +73,12 @@ export default function CustomerDetailPage() {
         .then(data => {
             
             // console.log(data)
-            console.log(data.results[id])
+            // console.log(data.results[id])
             // console.log(data.results[id].id)
             setMyData(data.results)
-            setName(data.results[id].name)
-            setUserId(data.results[id].id)
-            console.log(`User ID: ${userId}`)
-            setOrganisationNr(data.results[id].organisationNr)
-            
         })
-    }, [])
-
-
-    function handleOnSubmit(e){
-        e.preventDefault()
-        const url=`https://frebi.willandskill.eu/api/v1/customers/${id}`
-        const token = localStorage.getItem("webb21")
-        const customderId = 6353
-        // const body = new FormData
-        // body.append("name", "\"Oskar\"")
-
-        // fetch("https://frebi.willandskill.eu/api/v1/customers/4337/", {
-        // body,
-        // headers: {
-        //     Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo4ODgsInVzZXJuYW1lIjoid2ViYjIxQHdpbGxhbmRza2lsbC5zZSIsImV4cCI6MTY0MTU4Mjc3MCwiZW1haWwiOiJ3ZWJiMjFAd2lsbGFuZHNraWxsLnNlIiwib3JpZ19pYXQiOjE2NDA5Nzc5NzB9.I_9wpSxL3WOULlpY2rMRX3-XwVdt5bkpV5TOt7deATQ",
-        //     "Content-Type": "multipart/form-data"
-        // },
-        // method: "PATCH"
-        // })
-        
-        const payload = {userId, name, organisationNr}
-        // const myUserId = 916
-        fetch(url, {
-            method: "PATCH",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(payload)
-            
-        })
-        .then(res => res.json())
-        .then(data => console.log(data)
-        //     {
-        //     setMyData(data.results)
-        //     setName(data.results[id].name)
-        // }
-        )        
     }
+
 
     return (
         <div className="container">
@@ -136,36 +109,16 @@ export default function CustomerDetailPage() {
                 </div>
 
                 <div className="col-md-5">
-                    Change Customer information
+                    {/* Change Customer information */}
                     
                     <div>
-                        <form onSubmit={handleOnSubmit} >
-                            <input 
-                                value={name}
-                                placeholder="Full Name"
-                                onChange={e => setName(e.target.value)} 
-                            />
-                            {/* <input 
-                                value={lastName} 
-                                placeholder="Last Name"
-                                onChange={e => setLastName(e.target.value)}
-                            /> */}
-                            <button type="submit">Update Information</button>
-                        </form>
-
-                        {myData && (
-                            <>
-                                <p>{name}</p>
-                            </>
-                        )}
-
+                        <EditCustomerDetails onSuccess={fetchData} />
                     </div>
 
                 </div>
 
             </div>
             
-
         </div>
     )
 }
