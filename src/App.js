@@ -17,8 +17,9 @@ function App() {
 
   const [name, setName] = useState("")
   const [customerList, setCustomerList] = useState(null)
+  const [userData, setUserData] = useState(null)
 
-
+//Fetches Customer List
   useEffect(() => {
     const url="https://frebi.willandskill.eu/api/v1/customers/"
         const token = localStorage.getItem("webb21")
@@ -30,19 +31,36 @@ function App() {
         .then(res => res.json())
         .then(data => {
           setCustomerList(data.results)
-          console.log(data)
+          // console.log(data)
           setName(data.results.name)
         })
   }, [])
 
-  function test(){
-    console.log(customerList)
-  }
+//Fetches User Details
+  useEffect(() => {
 
-  test()
+    const url="https://frebi.willandskill.eu/api/v1/me"
+    
+    const token = localStorage.getItem("webb21")
+
+    fetch(url, {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    })
+    .then(res => res.json())
+    .then(data => setUserData(data))
+
+}, [])
+
+  // function test(){
+  //   console.log(customerList)
+  //   console.log(userData)
+  // }
+  // test()
 
   return (
-    <NameContext.Provider value={{customerList}}>
+    <NameContext.Provider value={{customerList, userData}}>
       <div>
         <Routes>
             <Route path="/login" element={<LoginPage />} />

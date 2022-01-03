@@ -5,7 +5,9 @@ import { NameContext } from '../App'
 import styled from 'styled-components'
 
 
-export default function CustomerList() {
+export default function CustomerList(props) {
+
+    const listOfCustomers = useContext(NameContext)
 
     const CustomerListHeader = styled.h4`
         margin-top: 20px;    
@@ -71,6 +73,10 @@ export default function CustomerList() {
         .then(res => fetchData())
     }
 
+    function consoleLog(){
+        console.log(listOfCustomers.customerList)
+    }
+    consoleLog()
 
     return (
         <div className="container">

@@ -29,15 +29,10 @@ const HomePageLink = styled(Header5)`
 
 
 
-export default function HomePage() {
+export default function HomePage(props) {
 
     const [myData, setMyData] = useState(null)
-
-    function test(){
-        console.log(myData)
-    }
-
-    test()
+    const userData = useContext(NameContext)
 
     useEffect(() => {
 
@@ -55,13 +50,12 @@ export default function HomePage() {
 
     }, [])
 
-    const {name, setName} = useContext(NameContext)
 
-    function test(){
-        console.log(myData)
-      }
-    
-      test()
+    function testConsole(){
+
+        console.log(userData.customerList)
+    }
+    testConsole()
 
     return (
         <UserContext.Provider value={{myData}}>
