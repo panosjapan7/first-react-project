@@ -8,12 +8,14 @@ import CustomerList from "./components/CustomerList";
 import CustomerDetailPage from "./pages/CustomerDetailPage";
 import MyPage from "./pages/MyPage";
 import UserCreatePage from "./pages/UserCreatePage";
+import EditCustomerDetails from "./components/EditCustomerDetails";
+
 
 const NameContext = createContext({})
 
 function App() {
 
-  const [name, setName] = useState("Pelle")
+  const [name, setName] = useState("")
   const [customerList, setCustomerList] = useState(null)
 
 
@@ -39,6 +41,8 @@ function App() {
             <Route path="/customers/:id" element={<CustomerDetailPage />} />
             <Route path="/me" element={<MyPage />} />
             <Route path="/users/create" element={<UserCreatePage />} />
+            <Route path="customers/edit/:id" element={<EditCustomerDetails />} />
+            {/* <Route path="customers/change" element={<ChangeCustomerNew/>} /> */}
           </Routes>
       </div>
      
