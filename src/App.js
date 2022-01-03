@@ -28,11 +28,21 @@ function App() {
             }
         })
         .then(res => res.json())
-        .then(data => setCustomerList(data.results))
+        .then(data => {
+          setCustomerList(data.results)
+          console.log(data)
+          setName(data.results.name)
+        })
   }, [])
 
+  function test(){
+    console.log(customerList)
+  }
+
+  test()
+
   return (
-    <NameContext.Provider value={{name, setName, customerList, setCustomerList}}>
+    <NameContext.Provider value={{customerList}}>
       <div>
         <Routes>
             <Route path="/login" element={<LoginPage />} />

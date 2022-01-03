@@ -4,6 +4,7 @@ import CustomerList from '../components/CustomerList'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
+const UserContext = createContext({})
 
 const HomePageDiv = styled.div`
     margin-top: 20px;
@@ -27,9 +28,16 @@ const HomePageLink = styled(Header5)`
     };
 
 
+
 export default function HomePage() {
 
     const [myData, setMyData] = useState(null)
+
+    function test(){
+        console.log(myData)
+    }
+
+    test()
 
     useEffect(() => {
 
@@ -48,41 +56,42 @@ export default function HomePage() {
     }, [])
 
     const {name, setName} = useContext(NameContext)
+
+    function test(){
+        console.log(myData)
+      }
+    
+      test()
+
     return (
-        <div className="container">
-            <div className="row">
+        <UserContext.Provider value={{myData}}>
+            <div className="container">
+                <div className="row">
 
-                <div className="col-md-3">
-                    {myData && (
-                    <HomePageDiv>
-                        <Header5>Hello, {myData. firstName} {myData.lastName}</Header5>
-                        <HomePageParagraph>Your email address is {myData.email} </HomePageParagraph>
-                        <HomePageLink><Link to="/login" style={linkStyle}>Login Page</Link></HomePageLink>
-                        <HomePageLink><Link to="/users/create" style={linkStyle}>Create a User</Link></HomePageLink>
-                    </HomePageDiv>
-                    )}
+                    <div className="col-md-3">
+                        {myData && (
+                        <HomePageDiv>
+                            <Header5>Hello, {myData.firstName} {myData.lastName}</Header5>
+                            <HomePageParagraph>Your email address is {myData.email} </HomePageParagraph>
+                            <HomePageLink><Link to="/login" style={linkStyle}>Login Page</Link></HomePageLink>
+                            <HomePageLink><Link to="/users/create" style={linkStyle}>Create a User</Link></HomePageLink>
+                        </HomePageDiv>
+                        )}
 
-                    <div>
-                        {/* <Link></Link> */}
+                        <div>
+                            {/* <Link></Link> */}
+                        </div>
                     </div>
-                </div>
 
-                <div className="col-md-9">
-                    <CustomerList />
-                </div>
+                    <div className="col-md-9">
+                        <CustomerList />
+                    </div>
 
+                </div>
             </div>
-            {/* <h1>Start Page, {name}</h1>
-            <input 
-                placeholder="Your name" 
-                value={name}
-                onChange={e => setName(e.target.value)}
-            /> */}
-            
-            
-            
-          
 
-        </div>
+        </UserContext.Provider>
     )
 }
+
+export {UserContext}
