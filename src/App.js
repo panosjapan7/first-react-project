@@ -42,7 +42,6 @@ function App() {
             <Route path="/me" element={<MyPage />} />
             <Route path="/users/create" element={<UserCreatePage />} />
             <Route path="customers/edit/:id" element={<EditCustomerDetails />} />
-            {/* <Route path="customers/change" element={<ChangeCustomerNew/>} /> */}
           </Routes>
       </div>
      

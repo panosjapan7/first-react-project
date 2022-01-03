@@ -66,17 +66,12 @@ export default function CustomerDetailPage() {
         const token = localStorage.getItem("webb21")
         fetch(url, {
             headers: {
+                'Content-Type': 'application/json',
                 "Authorization": `Bearer ${token}`
             }
         })
         .then(res => res.json())
-        .then(data => {
-            
-            // console.log(data)
-            // console.log(data.results[id])
-            // console.log(data.results[id].id)
-            setMyData(data.results)
-        })
+        .then(data => setMyData(data.results))
     }
 
 

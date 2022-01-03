@@ -21,9 +21,9 @@ function FindUrl() {
         method: "POST",
         headers:{
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${payload}`
+            
         },
-        // body: JSON.stringify(payload)
+        body: JSON.stringify(payload)
     })
     .then(res => res.json())
     .then(data => console.log(data))
