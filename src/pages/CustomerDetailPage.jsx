@@ -24,7 +24,7 @@ const CustomerDataContainer = styled.div`
     margin-top: 20px;
       
 `
-
+//Inherit CSS-properties from other components
 const CustomerData = styled(CustomerHeader)`
     font-weight: 500;
     font-size: 13pt;
@@ -38,7 +38,9 @@ export default function CustomerDetailPage() {
     const params = useParams()
     const id = params.id
     
+    //I've used customerList which is passed down from App.js (line 63) to populate the user details
     const {customerList, setCustomerList} = useContext(NameContext)
+    
     const [myData, setMyData] = useState(null)
 
 
@@ -61,6 +63,7 @@ export default function CustomerDetailPage() {
         // })
     }, [])
 
+    //Fetch Customer Details and save it to state variable myData
     function fetchData(){
         const url="https://frebi.willandskill.eu/api/v1/customers/"
         const token = localStorage.getItem("webb21")

@@ -96,13 +96,13 @@ export default function EditCustomerDetails(props) {
             })
         // .then(data => console.log(customer))
         
-
-        
     },[])
 
 
     function handleOnSubmit(e){
         e.preventDefault()
+        //I had a problem figuring out the solution to editing customer details, so I consol-logged everything
+        //In the end, I discovered that instead of the customer id, I was using the value in URL (0 for first customer in the array, 1 for next customer etc. )
         console.log(customerId)
         console.log(name)
         console.log(organisationNr)
@@ -131,6 +131,7 @@ export default function EditCustomerDetails(props) {
         
     }
 
+    //For Debugging purposes
     function test(){
         console.log(params.id)
         console.log(customer)
@@ -148,8 +149,8 @@ export default function EditCustomerDetails(props) {
     return (
         <div>
             
-
             <Header2>Edit Customer Details</Header2>
+            {/* For Debugging purposes */}
             {/* <button onClick={test} >Console.log</button> */}
 
             <form onSubmit={handleOnSubmit} >
@@ -157,7 +158,7 @@ export default function EditCustomerDetails(props) {
                 <br />
                 {renderInput("text", "Org. Nr.", organisationNr, setOrganisationNr)}
                 <br />
-                {/* {renderInput("text", "VAT Nr. (Country Code + 10 digits)", vatNr, setVatNr)} */}
+
                 <input
                     type="text"
                     placeholder="VAT nr. (SE10-digits)"

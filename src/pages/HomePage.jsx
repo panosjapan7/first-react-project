@@ -15,6 +15,7 @@ const Header5 = styled.h5`
     font-family: Courier;
 ` 
 
+//Inherit CSS-properties from other components
 const HomePageParagraph = styled(Header5)`
     font-size: 15px;
 `
@@ -32,8 +33,19 @@ const HomePageLink = styled(Header5)`
 export default function HomePage(props) {
 
     const [myData, setMyData] = useState(null)
+    
+    //Save User Details by using useContext
     const userData = useContext(NameContext)
 
+    //Checks that I saved User Details with useContext correctly
+    function testConsole(){
+
+        console.log(userData.customerList)
+    }
+    testConsole()
+
+
+    //Fetches User Details from API and saves it into state variable myData
     useEffect(() => {
 
         const url="https://frebi.willandskill.eu/api/v1/me"
@@ -50,12 +62,6 @@ export default function HomePage(props) {
 
     }, [])
 
-
-    function testConsole(){
-
-        console.log(userData.customerList)
-    }
-    testConsole()
 
     return (
         <UserContext.Provider value={{myData}}>

@@ -1,16 +1,19 @@
 import React, {useState, useEffect} from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
+//Use useLocation and URLSearchParams to extra token and uid values and use them in a fetch to activate user in API
 function FindUrl() {
+
+    //Use useLocation to find uid och token. 
     const location = useLocation();
     const url = location.search
     // console.log(location.search);
     console.log(url)
+    
+    //Use URLSearchParams to manage url easier.
     const queryParams = new URLSearchParams(url)
-
     const uid = queryParams.get("uid")
     console.log(uid)
-    
     const token = queryParams.get("token")
     console.log(token)
 

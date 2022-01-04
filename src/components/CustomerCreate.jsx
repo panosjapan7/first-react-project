@@ -102,7 +102,7 @@ export default function CustomerCreate(props) {
                 <br />
                 {renderInput("text", "Org. Nr.", organisationNr, setOrganisationNr)}
                 <br />
-                {/* {renderInput("text", "VAT Nr. (Country Code + 10 digits)", vatNr, setVatNr)} */}
+
                 <input
                     type="text"
                     placeholder="VAT nr. (SE10-digits)"

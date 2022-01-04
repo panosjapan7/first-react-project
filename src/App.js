@@ -6,7 +6,6 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import CustomerList from "./components/CustomerList";
 import CustomerDetailPage from "./pages/CustomerDetailPage";
-import MyPage from "./pages/MyPage";
 import UserCreatePage from "./pages/UserCreatePage";
 import EditCustomerDetails from "./components/EditCustomerDetails";
 
@@ -67,7 +66,6 @@ function App() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/customers" element={<CustomerList />} />
             <Route path="/customers/:id" element={<CustomerDetailPage />} />
-            <Route path="/me" element={<MyPage />} />
             <Route path="/users/create" element={<UserCreatePage />} />
             <Route path="customers/edit/:id" element={<EditCustomerDetails />} />
           </Routes>

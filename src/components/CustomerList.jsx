@@ -7,6 +7,7 @@ import styled from 'styled-components'
 
 export default function CustomerList(props) {
 
+    //Save Customer List by using useContext
     const listOfCustomers = useContext(NameContext)
 
     const CustomerListHeader = styled.h4`
@@ -18,6 +19,7 @@ export default function CustomerList(props) {
         margin-top: 20px;        
     `
 
+    //Inherit CSS-properties from other components
     const CustomerLink = styled(Link)`
         font-family: Courier;    
         text-decoration: none;
@@ -73,10 +75,12 @@ export default function CustomerList(props) {
         .then(res => fetchData())
     }
 
+    //To make sure that I saved customer list with useContext correctly
     function consoleLog(){
         console.log(listOfCustomers.customerList)
     }
     consoleLog()
+
 
     return (
         <div className="container">
@@ -98,11 +102,6 @@ export default function CustomerList(props) {
                         </CustomerContainerDiv>
                     })}
                 </div>
-
-                {/* <div className="col-md-3">
-                    <EditCustomer onSuccess={fetchData} />
-                    <button onClick={fetchData}>Refresh</button>
-                </div> */}
 
             </div>
             
