@@ -75,6 +75,7 @@ export default function CustomerDetailPage() {
         })
         .then(res => res.json())
         .then(data => setMyData(data.results))
+        // .then(data => setCustomerList(data.results))
     }
 
 

@@ -101,7 +101,7 @@ export default function EditCustomerDetails(props) {
 
     function handleOnSubmit(e){
         e.preventDefault()
-        //I had a problem figuring out the solution to editing customer details, so I consol-logged everything
+        //I had a problem figuring out the solution to editing customer details, so I console-logged everything
         //In the end, I discovered that instead of the customer id, I was using the value in URL (0 for first customer in the array, 1 for next customer etc. )
         console.log(customerId)
         console.log(name)
