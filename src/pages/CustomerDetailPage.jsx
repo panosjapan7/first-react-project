@@ -77,7 +77,7 @@ export default function CustomerDetailPage() {
         // })
     }, [])
 
-    //Fetch Customer Details and save it to state variable myData
+    //Fetch to Update Customer Details that's passed down to EditCustomerDetails
     function fetchData(){
         const url="https://frebi.willandskill.eu/api/v1/customers/"
         const token = localStorage.getItem("webb21")
