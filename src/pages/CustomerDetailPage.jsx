@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { NameContext } from '../App'
 import styled from 'styled-components';
 import EditCustomerDetails from '../components/EditCustomerDetails';
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const LinkParagraphContainer = styled.p`
     margin-top: 20px;
@@ -33,6 +34,19 @@ const CustomerData = styled(CustomerHeader)`
     const customerDataSpan = {
         fontWeight: 600,
     }
+
+    const DeleteCustomerButton = styled.button`
+    font-family: Courier;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    border: 1px solid red;
+    padding: 10px;
+    background: none;
+    &:hover{
+        color: green;
+        border: 1px solid green;
+    }
+`
 
 export default function CustomerDetailPage() {
     const params = useParams()
@@ -78,6 +92,24 @@ export default function CustomerDetailPage() {
         // .then(data => setCustomerList(data.results))
     }
 
+    const navigate = useNavigate()
+
+    function handleOnDelete(id){
+        
+        console.log(id)
+        const url=`https://frebi.willandskill.eu/api/v1/customers/${id}/`
+        const token = localStorage.getItem("webb21")
+        fetch(url, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            method: "DELETE"
+        })
+        .then(res => fetchData())
+        navigate("/home")
+    }
+
 
     return (
         <div className="container">
@@ -103,6 +135,7 @@ export default function CustomerDetailPage() {
                             <CustomerData><span style={customerDataSpan}>Website:</span> {customerList[id].website}</CustomerData>
                             <CustomerData><span style={customerDataSpan}>Email:</span> {customerList[id].email}</CustomerData>
                             <CustomerData><span style={customerDataSpan}>Phone Number:</span> {customerList[id].phoneNumber}</CustomerData>
+                            <DeleteCustomerButton onClick={e => handleOnDelete(customerList[id].id)} >Delete Customer</DeleteCustomerButton>
                         </CustomerDataContainer>
                     )}
                 </div>
